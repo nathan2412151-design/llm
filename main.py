@@ -1,12 +1,10 @@
 from openai import OpenAI
+import os
 
-# Crear cliente (usa tu API key desde variable de entorno)
-client = OpenAI()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# Pedir input al usuario
 texto = input("Escribe tu idea o texto: ")
 
-# Generar respuesta
 response = client.chat.completions.create(
     model="gpt-4o-mini",
     messages=[
@@ -15,6 +13,5 @@ response = client.chat.completions.create(
     ]
 )
 
-# Mostrar resultado
 print("\nResultado:\n")
 print(response.choices[0].message.content)
